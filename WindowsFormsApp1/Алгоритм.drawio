@@ -1,0 +1,445 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36" version="28.2.5" pages="6">
+  <diagram id="calcServiceCost" name="CalculateServiceCost">
+    <mxGraphModel dx="6140" dy="3816" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" value="начало" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="40" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="getId" value="Получить ID услуги" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="110" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="endArrow=block;html=1;" parent="1" source="start" target="getId" edge="1" />
+        <mxCell id="init" value="Инициализировать переменные:\nстоимостьМатериалов = 0\nстоимостьРабот = 0" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="300" y="180" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="endArrow=block;html=1;" parent="1" source="getId" target="init" edge="1" />
+        <mxCell id="qMat" value="Выполнить запрос к БД для получения материалов" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="300" y="260" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="endArrow=block;html=1;" parent="1" source="init" target="qMat" edge="1" />
+        <mxCell id="dMat" value="Материалы найдены?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="325" y="340" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="endArrow=block;html=1;" parent="1" source="qMat" target="dMat" edge="1" />
+        <mxCell id="retErr1" value="Вернуть ошибку: -1" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="570" y="365" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="endArrow=block;html=1;" parent="1" source="dMat" target="retErr1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="535" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lblNo1" value="нет" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;" parent="e5" vertex="1" connectable="0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="loopMat" value="Каждый найденный материал" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="100" y="360" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" style="endArrow=block;html=1;" parent="1" source="dMat" target="loopMat" edge="1" />
+        <mxCell id="lblYes1" value="да" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;" parent="e6" vertex="1" connectable="0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="calcMatCost" value="Рассчитать стоимость материала (расход × цена)\nПрибавить к общей стоимости материалов" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="430" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" style="endArrow=block;html=1;" parent="1" source="loopMat" target="calcMatCost" edge="1" />
+        <mxCell id="qLabor" value="Выполнить запрос к БД для получения требований по персоналу" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="300" y="530" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e8a" style="endArrow=block;html=1;" parent="1" source="calcMatCost" target="qLabor" edge="1" />
+        <mxCell id="e8b" style="endArrow=block;html=1;" parent="1" source="dMat" target="qLabor" edge="1" />
+        <mxCell id="dLabor" value="Данные о работах найдены?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="325" y="620" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" style="endArrow=block;html=1;" parent="1" source="qLabor" target="dLabor" edge="1" />
+        <mxCell id="retErr2" value="Вернуть ошибку: -1" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="570" y="645" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" style="endArrow=block;html=1;" parent="1" source="dLabor" target="retErr2" edge="1" />
+        <mxCell id="lblNo2" value="нет" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;" parent="e10" vertex="1" connectable="0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="calcLabor" value="Рассчитать стоимость работ\n(кол-во сотрудников × час. ставка)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="85" y="640" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" style="endArrow=block;html=1;" parent="1" source="dLabor" target="calcLabor" edge="1" />
+        <mxCell id="lblYes2" value="да" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;" parent="e11" vertex="1" connectable="0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sum" value="Сложить стоимость материалов и работ\nвернуть итоговую стоимость" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="300" y="740" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e12a" style="endArrow=block;html=1;" parent="1" source="calcLabor" target="sum" edge="1" />
+        <mxCell id="e12b" style="endArrow=block;html=1;" parent="1" source="qLabor" target="sum" edge="1" />
+        <mxCell id="end" value="конец" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="830" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" style="endArrow=block;html=1;" parent="1" source="sum" target="end" edge="1" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="calcMaterial" name="CalculateMaterialAmount">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="m_start" value="начало" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="m_in" value="Вход: serviceTypeId, materialTypeId, serviceCount, serviceParameter" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="110" width="400" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="me1" edge="1" parent="1" source="m_start" target="m_in" style="endArrow=block;html=1;" />
+        <mxCell id="m_validate" value="Проверить параметры (целые/вещественные &gt; 0)" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="190" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="me2" edge="1" parent="1" source="m_in" target="m_validate" style="endArrow=block;html=1;" />
+        <mxCell id="m_err1" value="Вернуть -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="215" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="me3" edge="1" parent="1" source="m_validate" target="m_err1" style="endArrow=block;html=1;" />
+        <mxCell id="ml1" value="нет" style="edgeLabel;html=1;" vertex="1" connectable="0" parent="me3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_coeff" value="Получить коэффициент типа услуги (ServiceTypes.consumption_coeff или 1.0)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="300" width="400" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="me4" edge="1" parent="1" source="m_validate" target="m_coeff" style="endArrow=block;html=1;" />
+        <mxCell id="m_overuse" value="Получить overuse_percent по материалу" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="380" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="me5" edge="1" parent="1" source="m_coeff" target="m_overuse" style="endArrow=block;html=1;" />
+        <mxCell id="m_err2" value="Если типы не найдены — вернуть -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="400" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="m_calc" value="base = serviceParameter × coeff × serviceCount\nresult = ceil(base × (1 + overuse/100))" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="460" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="me6" edge="1" parent="1" source="m_overuse" target="m_calc" style="endArrow=block;html=1;" />
+        <mxCell id="m_return" value="Вернуть result (int)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="560" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="me7" edge="1" parent="1" source="m_calc" target="m_return" style="endArrow=block;html=1;" />
+        <mxCell id="m_end" value="конец" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="630" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="me8" edge="1" parent="1" source="m_return" target="m_end" style="endArrow=block;html=1;" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="CalculateServiceCost" id="u0XEON4VM5pOCj1mAVy9">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Start -->
+        <mxCell id="start" value="начало" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="120" height="50" as="geometry" />
+        </mxCell>
+        <!-- Get service id -->
+        <mxCell id="getId" value="Получить ID услуги" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="110" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="start" target="getId" style="endArrow=block;html=1;" />
+        <!-- Init vars -->
+        <mxCell id="init" value="Инициализировать переменные:\nстоимостьМатериалов = 0\nстоимостьРабот = 0" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="180" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="getId" target="init" style="endArrow=block;html=1;" />
+        <!-- Query materials -->
+        <mxCell id="qMat" value="Выполнить запрос к БД для получения материалов" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="260" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="init" target="qMat" style="endArrow=block;html=1;" />
+        <!-- Decision materials found -->
+        <mxCell id="dMat" value="Материалы найдены?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="340" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="qMat" target="dMat" style="endArrow=block;html=1;" />
+        <!-- No materials -> return -1 -->
+        <mxCell id="retErr1" value="Вернуть ошибку: -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="365" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="dMat" target="retErr1" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="535" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lblNo1" value="нет" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;" vertex="1" connectable="0" parent="e5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- For each material loop block -->
+        <mxCell id="loopMat" value="Каждый найденный материал" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="360" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="dMat" target="loopMat" style="endArrow=block;html=1;" />
+        <mxCell id="lblYes1" value="да" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;" vertex="1" connectable="0" parent="e6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="calcMatCost" value="Рассчитать стоимость материала (расход × цена)\nПрибавить к общей стоимости материалов" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="430" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="loopMat" target="calcMatCost" style="endArrow=block;html=1;" />
+        <!-- Query staff -->
+        <mxCell id="qLabor" value="Выполнить запрос к БД для получения требований по персоналу" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="530" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e8a" edge="1" parent="1" source="calcMatCost" target="qLabor" style="endArrow=block;html=1;" />
+        <mxCell id="e8b" edge="1" parent="1" source="dMat" target="qLabor" style="endArrow=block;html=1;" />
+        <!-- Decision labor found -->
+        <mxCell id="dLabor" value="Данные о работах найдены?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="620" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="qLabor" target="dLabor" style="endArrow=block;html=1;" />
+        <mxCell id="retErr2" value="Вернуть ошибку: -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="645" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="dLabor" target="retErr2" style="endArrow=block;html=1;" />
+        <mxCell id="lblNo2" value="нет" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;" vertex="1" connectable="0" parent="e10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Calc labor cost -->
+        <mxCell id="calcLabor" value="Рассчитать стоимость работ\n(кол-во сотрудников × час. ставка)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="640" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="dLabor" target="calcLabor" style="endArrow=block;html=1;" />
+        <mxCell id="lblYes2" value="да" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;" vertex="1" connectable="0" parent="e11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Sum and return total -->
+        <mxCell id="sum" value="Сложить стоимость материалов и работ\nвернуть итоговую стоимость" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="740" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e12a" edge="1" parent="1" source="calcLabor" target="sum" style="endArrow=block;html=1;" />
+        <mxCell id="e12b" edge="1" parent="1" source="qLabor" target="sum" style="endArrow=block;html=1;" />
+        <!-- End -->
+        <mxCell id="end" value="конец" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="830" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="sum" target="end" style="endArrow=block;html=1;" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="CalculateMaterialAmount" id="T0159zypGlMX7GTaG2Ut">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="m_start" value="начало" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="m_in" value="Вход: serviceTypeId, materialTypeId, serviceCount, serviceParameter" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="110" width="400" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="me1" edge="1" parent="1" source="m_start" target="m_in" style="endArrow=block;html=1;" />
+        <mxCell id="m_validate" value="Проверить параметры (целые/вещественные &gt; 0)" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="190" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="me2" edge="1" parent="1" source="m_in" target="m_validate" style="endArrow=block;html=1;" />
+        <mxCell id="m_err1" value="Вернуть -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="215" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="me3" edge="1" parent="1" source="m_validate" target="m_err1" style="endArrow=block;html=1;" />
+        <mxCell id="ml1" value="нет" style="edgeLabel;html=1;" vertex="1" connectable="0" parent="me3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_coeff" value="Получить коэффициент типа услуги (ServiceTypes.consumption_coeff или 1.0)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="300" width="400" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="me4" edge="1" parent="1" source="m_validate" target="m_coeff" style="endArrow=block;html=1;" />
+        <mxCell id="m_overuse" value="Получить overuse_percent по материалу" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="380" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="me5" edge="1" parent="1" source="m_coeff" target="m_overuse" style="endArrow=block;html=1;" />
+        <mxCell id="m_err2" value="Если типы не найдены — вернуть -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="400" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="m_calc" value="base = serviceParameter × coeff × serviceCount\nresult = ceil(base × (1 + overuse/100))" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="460" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="me6" edge="1" parent="1" source="m_overuse" target="m_calc" style="endArrow=block;html=1;" />
+        <mxCell id="m_return" value="Вернуть result (int)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="560" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="me7" edge="1" parent="1" source="m_calc" target="m_return" style="endArrow=block;html=1;" />
+        <mxCell id="m_end" value="конец" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="630" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="me8" edge="1" parent="1" source="m_return" target="m_end" style="endArrow=block;html=1;" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="YyQLnuNrPLdQnQ8OEnUQ" name="Страница — 5">
+    <mxGraphModel dx="35774" dy="25065" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-1" target="JVQjUL24XnWG44bhRJ1_-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-1" value="начало" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="110" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-2" value="Вход: serviceTypeId, materialTypeId, serviceCount, serviceParameter" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="180" width="400" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-3" style="endArrow=block;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-1" target="JVQjUL24XnWG44bhRJ1_-2" />
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-4" target="JVQjUL24XnWG44bhRJ1_-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-4" target="JVQjUL24XnWG44bhRJ1_-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-4" value="Проверить параметры (целые/вещественные &gt; 0)" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="260" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-5" style="endArrow=block;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-2" target="JVQjUL24XnWG44bhRJ1_-4" />
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-6" target="JVQjUL24XnWG44bhRJ1_-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="305" />
+              <mxPoint x="780" y="725" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-6" value="Вернуть -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="280" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-7" style="endArrow=block;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-4" target="JVQjUL24XnWG44bhRJ1_-6" />
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-8" value="нет" style="edgeLabel;html=1;" vertex="1" connectable="0" parent="JVQjUL24XnWG44bhRJ1_-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-9" value="Получить коэффициент типа услуги (ServiceTypes.consumption_coeff или 1.0)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="370" width="400" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-10" style="endArrow=block;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-4" target="JVQjUL24XnWG44bhRJ1_-9" />
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-11" target="JVQjUL24XnWG44bhRJ1_-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-11" target="JVQjUL24XnWG44bhRJ1_-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-11" value="Получить overuse_percent по материалу" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="450" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-12" style="endArrow=block;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-9" target="JVQjUL24XnWG44bhRJ1_-11" />
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-13" target="JVQjUL24XnWG44bhRJ1_-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="725" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-13" value="Если типы не найдены — вернуть -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="455" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-14" target="JVQjUL24XnWG44bhRJ1_-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-14" value="base = serviceParameter × coeff × serviceCount\nresult = ceil(base × (1 + overuse/100))" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="530" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-15" style="endArrow=block;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-11" target="JVQjUL24XnWG44bhRJ1_-14" />
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-16" value="Вернуть result (int)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="630" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-17" style="endArrow=block;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-14" target="JVQjUL24XnWG44bhRJ1_-16" />
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-18" value="конец" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="700" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-19" style="endArrow=block;html=1;" edge="1" parent="1" source="JVQjUL24XnWG44bhRJ1_-16" target="JVQjUL24XnWG44bhRJ1_-18" />
+        <mxCell id="JVQjUL24XnWG44bhRJ1_-30" value="да" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2030" y="1680" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="7AOxUQ7MbEzSHobFR4bi" name="Страница — 6">
+    <mxGraphModel dx="1867" dy="516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="UqgzenWAkHVhU-6j8zJX-2" target="UqgzenWAkHVhU-6j8zJX-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-2" value="начало" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="20" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-3" value="Вход: serviceTypeId, materialTypeId, serviceCount, serviceParameter" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="90" width="400" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="UqgzenWAkHVhU-6j8zJX-6" target="UqgzenWAkHVhU-6j8zJX-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="UqgzenWAkHVhU-6j8zJX-6" target="UqgzenWAkHVhU-6j8zJX-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-6" value="Проверить параметры (целые/вещественные &gt; 0)" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="170" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UqgzenWAkHVhU-6j8zJX-8" target="UqgzenWAkHVhU-6j8zJX-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="215" />
+              <mxPoint x="760" y="635" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-8" value="Вернуть -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="190" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-9" value="Получить коэффициент типа услуги (ServiceTypes.consumption_coeff или 1.0)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="280" width="400" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="UqgzenWAkHVhU-6j8zJX-12" target="UqgzenWAkHVhU-6j8zJX-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="UqgzenWAkHVhU-6j8zJX-12" target="UqgzenWAkHVhU-6j8zJX-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-12" value="Получить overuse_percent по материалу" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="360" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UqgzenWAkHVhU-6j8zJX-14" target="UqgzenWAkHVhU-6j8zJX-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="635" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-14" value="Если типы не найдены — вернуть -1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="365" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="UqgzenWAkHVhU-6j8zJX-16" target="UqgzenWAkHVhU-6j8zJX-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-16" value="base = serviceParameter × coeff × serviceCount\nresult = ceil(base × (1 + overuse/100))" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="450" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="UqgzenWAkHVhU-6j8zJX-17" target="UqgzenWAkHVhU-6j8zJX-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-17" value="Вернуть result (int)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="570" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-18" value="конец" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="640" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-19" value="нет" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="470" y="180" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-20" value="да" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="250" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-21" value="да" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="420" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UqgzenWAkHVhU-6j8zJX-23" value="нет" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="190" y="360" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
